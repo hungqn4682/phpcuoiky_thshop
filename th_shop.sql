@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 12, 2021 lúc 03:41 PM
+-- Thời gian đã tạo: Th1 18, 2022 lúc 02:03 AM
 -- Phiên bản máy phục vụ: 10.4.19-MariaDB
 -- Phiên bản PHP: 7.3.28
 
@@ -18,39 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `tgdd`
+-- Cơ sở dữ liệu: `th_shop`
 --
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `danhgia`
---
-
-CREATE TABLE `danhgia` (
-  `masp` int(255) NOT NULL,
-  `sosao` int(3) NOT NULL,
-  `binhluan` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `hoten` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `sdt` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `email` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `ngaybinhluan` int(11) NOT NULL DEFAULT 1575022835
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Đang đổ dữ liệu cho bảng `danhgia`
---
-
-INSERT INTO `danhgia` (`masp`, `sosao`, `binhluan`, `hoten`, `sdt`, `email`, `ngaybinhluan`) VALUES
-(5, 4, 'hgdehfdsdf', 'duc', '854875', 'pdfd@d', 1608282774),
-(7, 3, 'cũng đc', 'dddddddđ', '4445454', 'pdfd@d', 1608282841),
-(7, 5, 'sản phẩm tốt', 'duc', '6735636', 'ducn@d', 1608282877),
-(1, 1, 'jsdfdsj', 'ducccccc', '445', 'phap810@gmail.com', 1608282740),
-(1, 5, 'Hay ', 'khanh', '3864745', 'Toi@g', 1608282714),
-(1, 5, 'chghgfh', 'vn', '3424', 'phap810@gmail.com', 1608282645),
-(1, 4, 'dffdfdffhgfhgf', 'vn', '6565465', 'vn@gmail.com', 1608282659),
-(1, 2, 'hay', 'ddd', '35454', 'phap810@gmail.com', 1608618384),
-(7, 3, 'ddddddddd', 'vn', '009883', 'phap810@gmail.com', 1609225821);
 
 -- --------------------------------------------------------
 
@@ -64,6 +33,21 @@ CREATE TABLE `hangsx` (
   `tenhang` varchar(200) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
   `picture` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `hangsx`
+--
+
+INSERT INTO `hangsx` (`mahang`, `maloai`, `tenhang`, `picture`) VALUES
+(1, 1, 'Nike', 'image/hang/nike.png'),
+(31, 1, 'Bitis', 'image/hang/bitis.png'),
+(30, 1, 'Adidas', 'image/hang/adidas.png'),
+(11, 2, 'Adidas', 'image/hang/adidas.png'),
+(12, 2, 'Nike', 'image/hang/nike.png'),
+(13, 2, 'Puma', 'image/hang/puma.png'),
+(32, 3, 'Valentino', 'image/hang/bitis.png'),
+(22, 3, 'Puma', 'image/hang/puma.png'),
+(23, 3, 'Nike', 'image/hang/nike.png');
 
 -- --------------------------------------------------------
 
@@ -83,6 +67,17 @@ CREATE TABLE `kho` (
   `thoigiantao` int(11) NOT NULL DEFAULT 1575022835
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `kho`
+--
+
+INSERT INTO `kho` (`id`, `tensp`, `gia`, `giamgia`, `anh`, `soluong`, `maloai`, `mahang`, `thoigiantao`) VALUES
+(96, 'Air jordan force', 3000000, 50000, 'image/jordan-air-force.png', 10, 1, 1, 1636628907),
+(97, 'Air jordan retro trắng', 3500000, 300000, 'image/air-jordan-retro-style-white.png', 10, 1, 1, 1636628646),
+(98, 'Air jordan jumpman', 3500000, 300000, 'image/jumpman-air-jordan.png', 30, 1, 1, 1636628779),
+(99, 'Air jordan force', 4000000, 0, 'image/jordan-air-force.png', 30, 2, 12, 1636628807),
+(100, 'Air jordan jumpman', 5000000, 0, 'image/jumpman-air-jordan.png', 20, 2, 12, 1636628840);
+
 -- --------------------------------------------------------
 
 --
@@ -91,8 +86,18 @@ CREATE TABLE `kho` (
 
 CREATE TABLE `loaisp` (
   `maloai` int(11) NOT NULL,
-  `loai` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL
+  `loai` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `anhs` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaisp`
+--
+
+INSERT INTO `loaisp` (`maloai`, `loai`, `anhs`) VALUES
+(1, 'Trẻ em', 'image/kids.png'),
+(2, 'Nam', 'image/man.png'),
+(3, 'Nữ', 'image/women.png');
 
 -- --------------------------------------------------------
 
@@ -131,6 +136,16 @@ CREATE TABLE `order` (
   `last_updated` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `order`
+--
+
+INSERT INTO `order` (`id`, `name`, `phone`, `address`, `email`, `note`, `total`, `created_time`, `last_updated`) VALUES
+(58, 'hung', '0727425310', 'TỔ 18', 'fcluongnong1@gmail.com', 'không', 6900000, 1639652960, 1639652960),
+(59, 'hung', '0727425310', 'TỔ 18', 'fcluongnong1@gmail.com', 'không', 8850000, 1639654323, 1639654323),
+(60, 'Nguyen Thanh Phat', '0777425310', 'asdasd', 'fcluongnong1@gmail.com', 'asdasd', 6100000, 1641394590, 1641394590),
+(61, 'Nguyen Thanh Phat', '0727425310', 'TỔ 18', 'fcluongnong1@gmail.com', 'sdasd', 9600000, 1642092667, 1642092667);
+
 -- --------------------------------------------------------
 
 --
@@ -147,47 +162,38 @@ CREATE TABLE `order_detail` (
   `last_updated` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `thongsokythuat`
+-- Đang đổ dữ liệu cho bảng `order_detail`
 --
 
-CREATE TABLE `thongsokythuat` (
-  `mats` int(11) NOT NULL,
-  `tensp` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `price`, `created_time`, `last_updated`) VALUES
+(66, 58, 98, 1, 3200000, 1639652960, 1639652960),
+(68, 59, 96, 3, 8850000, 1639654323, 1639654323),
+(69, 60, 96, 1, 2950000, 1641394590, 1641394590),
+(70, 60, 98, 1, 3200000, 1641394590, 1641394590),
+(71, 61, 98, 3, 9600000, 1642092667, 1642092667);
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Chỉ mục cho bảng `danhgia`
---
-ALTER TABLE `danhgia`
-  ADD KEY `fk_danhgia` (`masp`);
-
---
 -- Chỉ mục cho bảng `hangsx`
 --
 ALTER TABLE `hangsx`
-  ADD PRIMARY KEY (`mahang`),
-  ADD UNIQUE KEY `tenhang` (`tenhang`);
+  ADD PRIMARY KEY (`mahang`);
 
 --
 -- Chỉ mục cho bảng `kho`
 --
 ALTER TABLE `kho`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `tensp` (`tensp`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `loaisp`
 --
 ALTER TABLE `loaisp`
-  ADD PRIMARY KEY (`maloai`),
-  ADD UNIQUE KEY `loai` (`loai`);
+  ADD PRIMARY KEY (`maloai`);
 
 --
 -- Chỉ mục cho bảng `nhanvien`
@@ -211,13 +217,6 @@ ALTER TABLE `order_detail`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `thongsokythuat`
---
-ALTER TABLE `thongsokythuat`
-  ADD PRIMARY KEY (`mats`),
-  ADD UNIQUE KEY `tensp` (`tensp`);
-
---
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -225,19 +224,19 @@ ALTER TABLE `thongsokythuat`
 -- AUTO_INCREMENT cho bảng `hangsx`
 --
 ALTER TABLE `hangsx`
-  MODIFY `mahang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `mahang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `kho`
 --
 ALTER TABLE `kho`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisp`
 --
 ALTER TABLE `loaisp`
-  MODIFY `maloai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `maloai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `nhanvien`
@@ -249,19 +248,23 @@ ALTER TABLE `nhanvien`
 -- AUTO_INCREMENT cho bảng `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT cho bảng `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT cho bảng `thongsokythuat`
+-- Các ràng buộc cho các bảng đã đổ
 --
-ALTER TABLE `thongsokythuat`
-  MODIFY `mats` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- Các ràng buộc cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
